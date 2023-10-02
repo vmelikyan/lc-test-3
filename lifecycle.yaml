@@ -8,7 +8,6 @@ environment:
 services:
   - name: "lc-test-3"
     helm:
-      name: 'goodrx-app'
       repository: 'vmelikyan/lc-test'
       branchName: 'main'
       chart:
