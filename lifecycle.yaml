@@ -21,6 +21,7 @@ services:
             TEST_TEST: 'test'
           ports:
             - 8080
+
   
   # - name: "grpc-echo-legacy"
   #   github:
