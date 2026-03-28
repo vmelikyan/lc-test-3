@@ -7,20 +7,34 @@ environment:
 
 services:
   - name: "lc-test-3"
-    helm:
-      repository: 'vmelikyan/lc-test'
+    github:
+      repository: 'vmelikyan/lc-test-3'
       branchName: 'main'
-      chart:
-        name: 'goodrx-app'
       docker:
+        builder:
+          engine: 'buildkit'
         defaultTag: 'main'
         app:
           dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
           env:
             CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
             TEST_TEST: 'test'
+            WHAT: "is-this"
           ports:
             - 8080
+      deployment:
+        public: true
+        resource:
+          cpu:
+            request: '10m'
+          memory:
+            request: '50Mi'
+        readiness:
+          tcpSocketPort: 8080
+        hostnames:
+          host: '0env.com'
+          defaultInternalHostname: 'lc-test-3-dev-0'
+          defaultPublicUrl: 'lc-test-dev-0.0env.com'
   
   # - name: "grpc-echo-legacy"
   #   github:
