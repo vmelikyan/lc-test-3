@@ -4,6 +4,10 @@ version: '1.0.0'
 environment:
   defaultServices:
     - name: 'lc-test-3'
+  optionalServices:
+    - name: 'lc-test-gh-type'
+      repository: 'vmelikyan/lc-test'
+      branch: 'main'
 
 services:
   - name: "lc-test-3"
