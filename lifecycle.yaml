@@ -39,6 +39,17 @@ services:
           host: '0env.com'
           defaultInternalHostname: 'lc-test-3-dev-0'
           defaultPublicUrl: 'lc-test-dev-0.0env.com'
+    dev:
+      image: 'node:20-slim'
+      command: 'npm run dev'
+      installCommand: 'cd /workspace/my-express-app && npm install'
+      workDir: '/workspace/my-express-app'
+      ports:
+        - 8080
+      env:
+        CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+        TEST_TEST: 'test'
+        WHAT: "is-this"  
   
   # - name: "grpc-echo-legacy"
   #   github:
