@@ -4,6 +4,9 @@ version: '1.0.0'
 environment:
   defaultServices:
     - name: 'lc-test-3'
+    - name: 'lc-test-asdasdasdasdasdgas'
+    - name: 'lc-test-4'
+    - name: 'lc-test-5'
   optionalServices:
     - name: 'lc-test-gh-type'
       repository: 'vmelikyan/lc-test'
@@ -49,8 +52,129 @@ services:
       env:
         CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
         TEST_TEST: 'test'
+        WHAT: "is-this"
+
+  - name: "lc-test-4"
+    github:
+      repository: 'vmelikyan/lc-test-3'
+      branchName: 'main'
+      docker:
+        builder:
+          engine: 'buildkit'
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
+          env:
+            CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+            TEST_TEST: 'test'
+            WHAT: "is-this"
+          ports:
+            - 8080
+      deployment:
+        public: true
+        resource:
+          cpu:
+            request: '10m'
+          memory:
+            request: '50Mi'
+        readiness:
+          tcpSocketPort: 8080
+        hostnames:
+          host: '0env.com'
+          defaultInternalHostname: 'lc-test-3-dev-0'
+          defaultPublicUrl: 'lc-test-dev-0.0env.com'
+    dev:
+      image: 'node:20-slim'
+      command: 'npm run dev'
+      installCommand: 'cd /workspace/my-express-app && npm install'
+      workDir: '/workspace/my-express-app'
+      ports:
+        - 8080
+      env:
+        CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+        TEST_TEST: 'test'
+        WHAT: "is-this"    
+
+  - name: "lc-test-asdasdasdasdasdgas"
+    github:
+      repository: 'vmelikyan/lc-test-3'
+      branchName: 'main'
+      docker:
+        builder:
+          engine: 'buildkit'
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
+          env:
+            CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+            TEST_TEST: 'test'
+            WHAT: "is-this"
+          ports:
+            - 8080
+      deployment:
+        public: true
+        resource:
+          cpu:
+            request: '10m'
+          memory:
+            request: '50Mi'
+        readiness:
+          tcpSocketPort: 8080
+        hostnames:
+          host: '0env.com'
+          defaultInternalHostname: 'lc-test-3-dev-0'
+          defaultPublicUrl: 'lc-test-dev-0.0env.com'
+    dev:
+      image: 'node:20-slim'
+      command: 'npm run dev'
+      installCommand: 'cd /workspace/my-express-app && npm install'
+      workDir: '/workspace/my-express-app'
+      ports:
+        - 8080
+      env:
+        CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+        TEST_TEST: 'test'
         WHAT: "is-this"  
-  
+  - name: "lc-test-5"
+    github:
+      repository: 'vmelikyan/lc-test-3'
+      branchName: 'main'
+      docker:
+        builder:
+          engine: 'buildkit'
+        defaultTag: 'main'
+        app:
+          dockerfilePath: 'sysops/dockerfiles/app.dockerfile'
+          env:
+            CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+            TEST_TEST: 'test'
+            WHAT: "is-this"
+          ports:
+            - 8080
+      deployment:
+        public: true
+        resource:
+          cpu:
+            request: '10m'
+          memory:
+            request: '50Mi'
+        readiness:
+          tcpSocketPort: 8080
+        hostnames:
+          host: '0env.com'
+          defaultInternalHostname: 'lc-test-3-dev-0'
+          defaultPublicUrl: 'lc-test-dev-0.0env.com'
+    dev:
+      image: 'node:20-slim'
+      command: 'npm run dev'
+      installCommand: 'cd /workspace/my-express-app && npm install'
+      workDir: '/workspace/my-express-app'
+      ports:
+        - 8080
+      env:
+        CLIENT_HOST: '{{grpc-echo_internalHostname}}:8080'
+        TEST_TEST: 'test'
+        WHAT: "is-this"  
   # - name: "grpc-echo-legacy"
   #   github:
   #     repository: "vmelikyan/lc-test"
