@@ -5,6 +5,8 @@ const protoLoader = require('@grpc/proto-loader');
 const app = express();
 const port = 8080;
 
+// Lifecycle static-selectivity E2E marker: 20260805T170500Z.
+
 const packageDefinition = protoLoader.loadSync(__dirname + '/echo-me.proto', {
     keepCase: true,
     longs: String,
