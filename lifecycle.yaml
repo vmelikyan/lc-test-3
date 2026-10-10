@@ -143,3 +143,5 @@ services:
   #       name: "elasticsearch"
 
         
+
+services: [this is: not: valid: yaml
