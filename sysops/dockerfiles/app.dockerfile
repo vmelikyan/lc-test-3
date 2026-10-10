@@ -17,7 +17,6 @@ COPY ../my-express-app/ .
 EXPOSE 8080
 
 # Run the application
-RUN exit 1
 CMD [ "node", "app.js" ]
 
 # waves-e2e T2 20260821
