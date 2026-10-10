@@ -7,6 +7,8 @@ environment:
 
 services:
   - name: "lc-test-3"
+    deploymentDependsOn:
+      - 'lc-test-4'
     github:
       repository: 'vmelikyan/lc-test-3'
       branchName: 'main'
